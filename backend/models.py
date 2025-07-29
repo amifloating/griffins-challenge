@@ -23,13 +23,13 @@ def init_db():
     ''')
     conn.commit()
 
-    # Insert dummy challenges if none exist yet
+    # Insert your actual challenges if none exist yet
     c.execute('SELECT COUNT(*) FROM challenges')
     if c.fetchone()[0] == 0:
         challenges = [
-            (1, "What is 2 + 2?", "4"),
-            (2, "What color is the sky on a clear day?", "blue"),
-            (3, "Spell 'CTF' backwards.", "FTC")
+            (1, "What is the name of the first shirt?", "Hart"),
+            (2, "What is the name of the CC?", "Sturgis"),
+            (3, "Cloud team?", "6")
         ]
         c.executemany('INSERT INTO challenges VALUES (?, ?, ?)', challenges)
         conn.commit()
