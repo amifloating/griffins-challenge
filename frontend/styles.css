@@ -1,12 +1,11 @@
 body {
-  font-family: sans-serif;
-  max-width: 600px;
-  margin: auto;
-  padding: 2em;
+  background-color: black;
+  color: #00FF00;
+  font-family: 'Courier New', Courier, monospace;
 }
-.hidden {
-  display: none;
-}
-#progress {
-  margin-top: 10px;
+
+input, button {
+  background-color: #111;
+  color: #0f0;
+  border: 1px solid #0f0;
 }
