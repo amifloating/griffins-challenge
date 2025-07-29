@@ -1,5 +1,14 @@
 let current = 1;
 
+// Typing animation for Matrix-style effect
+async function typeText(element, text, speed = 40) {
+  element.innerText = "";
+  for (let i = 0; i < text.length; i++) {
+    element.innerText += text.charAt(i);
+    await new Promise(resolve => setTimeout(resolve, speed));
+  }
+}
+
 async function login() {
   const username = document.getElementById("username").value;
   await fetch("http://localhost:5000/login", {
@@ -18,11 +27,12 @@ async function loadChallenge() {
     credentials: "include"
   });
   const data = await res.json();
+  const questionEl = document.getElementById("question");
   if (data.question) {
-    document.getElementById("question").innerText = data.question;
+    await typeText(questionEl, data.question);
     updateProgress();
   } else {
-    document.getElementById("question").innerText = "All challenges complete!";
+    await typeText(questionEl, "All challenges complete!");
   }
 }
 
@@ -35,7 +45,8 @@ async function submit() {
     body: JSON.stringify({ flag })
   });
   const data = await res.json();
-  document.getElementById("feedback").innerText = data.correct ? "✅ Correct!" : "❌ Try again!";
+  const feedback = document.getElementById("feedback");
+  feedback.innerText = data.correct ? "✅ Correct!" : "❌ Try again!";
   if (data.correct) {
     loadChallenge();
   }
