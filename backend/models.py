@@ -27,9 +27,10 @@ def init_db():
     c.execute('SELECT COUNT(*) FROM challenges')
     if c.fetchone()[0] == 0:
         challenges = [
-            (1, "Operations, All Calls, hellos and goodbyes, often happen here, in the heart of the squadron", "Insert number hidden at crew desk"),
+            (1, "Operations, All Calls, hails and farewells all often happen here, in the heart of the squadron", "Insert number hidden at crew desk"),
             (2, "Congrats! navigage to [website], and find the flag", "Answer"),
             (3, "Cloud team?", "6")
+            (4, "", "")
         ]
         c.executemany('INSERT INTO challenges VALUES (?, ?, ?)', challenges)
         conn.commit()
